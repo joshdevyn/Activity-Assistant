@@ -297,29 +297,6 @@ class Listeners(commands.Cog):
 
         print(f"[Listeners.on_message.active_alert_check] Channel {channel.name} activated successfully.")
 
-        # Notify users subscribed via the pingME table
-        print(f"[Listeners.on_message.active_alert_check.helper_function] Fetching pingME subscribers for channel {channel.id} in guild {channel.guild.id}...")
-        ping_subscribers = await self.client.db_handler.execute(
-            "SELECT memberID FROM pingME WHERE guildID = %s AND channelID = %s",
-            (channel.guild.id, channel.id)
-        )
-        print(f"[Listeners.on_message.active_alert_check.helper_function] Subscribers found: {ping_subscribers}")
-
-        for subscriber in ping_subscribers:
-            member_id = subscriber['memberID']
-            user = channel.guild.get_member(member_id)
-            if user:
-                try:
-                    embed = Embed(
-                        title="Channel Activation Alert",
-                        description=f"The channel {channel.mention} has become active!",
-                        color=random.choice(self.rainbow_colors)
-                    )
-                    await user.send(embed=embed)
-                    print(f"[Listeners.on_message.active_alert_check.helper_function] Notification sent to user {user.name} ({user.id})")
-                except Exception as e:
-                    print(f"[Listeners.on_message.active_alert_check.helper_function] Failed to send notification to user {user.name} ({user.id}): {e}")
-
         if is_paused:
             print(f"[Listeners.on_message.active_alert_check] Resetting is paused. Skipping the move of channel {channel.name}.")
         elif not channel_id_check:
@@ -355,6 +332,38 @@ class Listeners(commands.Cog):
                             print(f"[Listeners.on_message.active_alert_check] An error occurred while moving channel {channel.name} to active category: {e}")
             except Exception as e:
                 print(f"[Listeners.on_message.active_alert_check.helper_function] An error occurred while checking the move blacklist: {e}")
+
+        # Notify users subscribed via the pingME table
+        print(f"[Listeners.on_message.active_alert_check.helper_function] Fetching pingME subscribers for channel {channel.id} in guild {channel.guild.id}...")
+        ping_subscribers = await self.client.db_handler.execute(
+            "SELECT memberID FROM pingME WHERE guildID = %s AND channelID = %s",
+            (channel.guild.id, channel.id)
+        )
+        print(f"[Listeners.on_message.active_alert_check.helper_function] Subscribers found: {ping_subscribers}")
+
+        # Collect subscribers for a single ping
+        subscriber_mentions = []
+
+        for subscriber in ping_subscribers:
+            member_id = subscriber['memberID']
+            user = channel.guild.get_member(member_id)
+            if user:
+                subscriber_mentions.append(user.mention)
+
+        if subscriber_mentions:
+            try:
+                # Create a single notification embed
+                embed = Embed(
+                    title="Channel Activation Alert",
+                    description=f"The channel {channel.mention} has become active!",
+                    color=self.rainbow_colors[self.color_index]
+                )
+                embed.add_field(name="Notified Subscribers", value=', '.join(subscriber_mentions), inline=False)
+                await log_channel.send(embed=embed)
+                print(f"[Listeners.on_message.active_alert_check.helper_function] Single notification sent to log channel for subscribers.")
+                self.color_index = self.color_index + 1
+            except Exception as e:
+                print(f"[Listeners.on_message.active_alert_check.helper_function] Failed to send notification to log channel: {e}")
 
 async def setup(client):
     db_handler = client.db_handler
