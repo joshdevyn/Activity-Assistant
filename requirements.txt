@@ -1,0 +1,12 @@
+aiohttp
+aiomysql
+aiosqlite
+discord.py
+dotenv
+emoji
+flask
+numpy
+pillow
+pytz
+requests
+topggpy
