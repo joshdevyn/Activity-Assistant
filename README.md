@@ -122,10 +122,7 @@ The dashboard will be available at `http://localhost:8106/` by default.
 - Monitors messages for keywords and triggers notifications.
 
 **Ping_Commands Cog**:
-- **`pingme`**: Subscribes the user to channel notifications.
-- **`unpingme`**: Unsubscribes from channel notifications.
-- **`keywordping`**: Subscribe to keyword-based notifications.
-- **`unkeywordping`**: Unsubscribe to keyword-based notifications.
+- Controls pings for channels and keywords.
 
 **Subscription_Commands Cog**:
 - Lists user and channel subscriptions.
@@ -144,6 +141,57 @@ The dashboard will be available at `http://localhost:8106/` by default.
 
 **Events_Management Cog**:
 - Centralizes event processing and management.
+
+## Command List
+
+### Active
+- **`active`**: Configures settings for active channels. Start here.
+  - **Usage**: `!aa active`
+
+### Active_Channel_Commands
+- **`active_channels`**: Lists all active channels and their cooldowns.
+  - **Usage**: `!aa active-channels`
+
+### Blacklist_Management_Commands
+- **`blacklist`**: Displays the current blacklist for the server.
+  - **Usage**: `!aa blacklist`
+- **`remove_blacklist`**: Removes an entry from the blacklist.
+  - **Usage**: `!aa remove-blacklist`
+
+### Events_Management
+- **`pause_reset`**: Pauses the resetting of channel positions for the server.
+  - **Usage**: `!aa pause`
+- **`resume_reset`**: Resumes the resetting of channel positions for the server.
+  - **Usage**: `!aa resume`
+
+### Ping_Commands
+- **`pingme`**: Subscribe to pings from specified channels.
+  - **Usage**: `!aa pingme #channel1 #channel2 ...`
+- **`unpingme`**: Unsubscribe from pings in specified channels.
+  - **Usage**: `!aa unpingme #channel1 #channel2 ...`
+- **`keywordping`**: Subscribe to notifications for a specified keyword or regex.
+  - **Usage**: `!aa keywordping <keyword/regex>`
+- **`unkeywordping`**: Unsubscribe from keyword notifications.
+  - **Usage**: `!aa unkeywordping <keyword/regex>`
+
+### Position_Commands
+- **`return_positions`**: Restores channel positions for a specified category, channel, or all channels.
+  - **Usage**: `!aa return_positions [ID]`
+
+### Reset_Positions_Commands
+- **`reset_positions`**: Resets channel positions to their original settings.
+  - **Usage**: `!aa reset_positions`
+
+### Subscription_Commands
+- **`subscribed_channels`**: Shows all channels a user is subscribed to for ping notifications.
+  - **Usage**: `!aa subscribed_channels [member]`
+- **`subscribed_keywords`**: Shows all keywords a user is subscribed to for notifications.
+  - **Usage**: `!aa subscribed_keywords [member]`
+- **`subscribed_members`**: Shows all members subscribed to a specified channel for ping notifications.
+  - **Usage**: `!aa subscribed_members <#channel>`
+
+## Initial Setup
+Use `!aa active` to set up the bot for the first time.
 
 ## Code Design and Architecture
 
