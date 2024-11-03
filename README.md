@@ -142,6 +142,9 @@ The dashboard will be available at `http://localhost:8106/` by default.
 **Events_Management Cog**:
 - Centralizes event processing and management.
 
+**Cog_Template Cog**:
+- Use this as a template for creating new cogs. They will automatically be picked up by the `load_cogs` method in main when the bot starts.
+
 ## Command List
 
 ### Active
