@@ -177,8 +177,6 @@ The dashboard will be available at `http://localhost:8106/` by default.
 ### Position_Commands
 - **`return_positions`**: Restores channel positions for a specified category, channel, or all channels.
   - **Usage**: `!aa return_positions [ID]`
-
-### Reset_Positions_Commands
 - **`reset_positions`**: Resets channel positions to their original settings.
   - **Usage**: `!aa reset_positions`
 
