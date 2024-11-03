@@ -34,15 +34,17 @@ class DatabaseHandler:
         # Define the tables to drop (in reverse order of dependency to avoid foreign key constraints issues)
         # Leaving this here just in case you need to drop tables in the future and don't want to have key constraints issues
         # drop_queries = [
-        #     "DROP TABLE IF EXISTS membersBlacklist",
-        #     "DROP TABLE IF EXISTS channelsBlacklist",
-        #     "DROP TABLE IF EXISTS moveBlacklist",
-        #     "DROP TABLE IF EXISTS activeTextChannels",
+        #     "DROP TABLE IF EXISTS keywordPings",
+        #     "DROP TABLE IF EXISTS reset_paused",
         #     "DROP TABLE IF EXISTS activeVoiceChannels",
-        #     "DROP TABLE IF EXISTS active",
-        #     "DROP TABLE IF EXISTS categories_channels",
-        #     "DROP TABLE IF EXISTS pingME",
+        #     "DROP TABLE IF EXISTS activeTextChannels",
+        #     "DROP TABLE IF EXISTS moveBlacklist",
+        #     "DROP TABLE IF EXISTS channelsBlacklist",
+        #     "DROP TABLE IF EXISTS membersBlacklist",
         #     "DROP TABLE IF EXISTS bannedCategories",
+        #     "DROP TABLE IF EXISTS pingME",
+        #     "DROP TABLE IF EXISTS categories_channels",
+        #     "DROP TABLE IF EXISTS active",
         #     "DROP TABLE IF EXISTS guildLogChannels",
         #     "DROP TABLE IF EXISTS servers",
         # ]
