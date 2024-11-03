@@ -17,10 +17,3 @@ class Utility(commands.Cog):
     async def setup(client):
         db_handler = await DatabaseHandler.create(client, mysql_config)
         await client.add_cog(Utility(client, db_handler))
-
-    def create_progress_bar(current, total, bar_length=20):
-        progress = float(current) / float(total)
-        # Use the Unicode spade symbol directly without the emoji presentation
-        arrow = '\u2660' * int(round(progress * bar_length) - 1)
-        spaces = '-' * (bar_length - len(arrow))
-        return f"[{arrow}{spaces}]"
