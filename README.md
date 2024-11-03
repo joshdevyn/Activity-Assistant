@@ -123,8 +123,9 @@ The dashboard will be available at `http://localhost:8106/` by default.
 
 **Ping_Commands Cog**:
 - **`pingme`**: Subscribes the user to channel notifications.
-- **`unpingme`**: Unsubscribes from notifications.
-- **`keywordping`**: Sets up keyword-based notifications.
+- **`unpingme`**: Unsubscribes from channel notifications.
+- **`keywordping`**: Subscribe to keyword-based notifications.
+- **`unkeywordping`**: Unsubscribe to keyword-based notifications.
 
 **Subscription_Commands Cog**:
 - Lists user and channel subscriptions.
